@@ -1,0 +1,26 @@
+#!/bin/sh
+
+chmod +x Linux.sh
+
+
+#	to lighten the images
+convert *.PNG -level -15% _new.PNG
+
+#	creating the grid for the images
+montage *.PNG -tile 3x4 out.PNG
+
+#	creating the pdf file
+convert out-*.PNG -compress jpeg -quality 75 test.pdf
+
+
+#	resizing to A4 format
+convert test.pdf -resize 575x823 -gravity center -background white -extent 595x842 finalpdf.pdf
+
+#	deleting files and leaving only test1
+rm -f out*.PNG
+rm -f _new*.PNG
+rm -f test.pdf
+
+
+#a4
+#pdf
